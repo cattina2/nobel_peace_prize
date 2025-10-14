@@ -4,14 +4,14 @@ Ce projet a pour objectif d'étudier l'évolution du profil des nominés pour la
 
 ### Phase exploratoire
 
-* [Problématiques et questionnements](problematique_questionnement)
-* [Listes de nominés pour le prix Nobel de la paix](listes-de-nominés-prix-nobel)
-* [Catalogue des informations](catalogue-des-informations)
+* [Problématiques et questionnements](problematique_questionnement.md)
+* [Listes de nominés pour le prix Nobel de la paix](listes-de-nominés-prix-nobel.md)
+* [Catalogue des informations](catalogue-des-information.md)
 
 ### Création de la base de données
 
 * [Modèle conceptuel](modele_conceptuel)
-* [Commentaire du modèle conceptuel](modele_conceptuel_commentaire)
+* [Commentaire du modèle conceptuel](modele_conceptuel_commentaire.md)
 
 ### Récupération et analyse de données existantes 
 
