@@ -5,6 +5,8 @@
 - Statut (nominé/nominant)
 - Date de naissance
 - Lieu de naissance
+- date de décès
+- lieu de décès
 - âge à la nomination/réception du prix
 - Sexe
 - Nationalité

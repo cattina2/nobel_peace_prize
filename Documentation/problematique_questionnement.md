@@ -13,11 +13,12 @@ Grâce à une démarche propsopographique, il sera question de tenter de décrir
 
 Cette démarche vise à répondre à plusieurs interrogations s'articulant autour de l'évolution des caractéristiques des nominés pour le prix Nobel de la paix. Ces interrogations sont donc les suivantes:
 
-Y-a-t-il des éléments systémiques qui permettent de caractériser les récipiendaires par rapport aux nominés?
+Y-a-t-il des éléments systématiques qui permettent de caractériser les récipiendaires par rapport aux nominés?
 
 Quelles évolutions peut-on remarquer concernant les causes ou domaines d'activités représentés par les nominés et récipiendaires au fil du temps?
 
-* Informations à collecter
+
+# Informations à collecter
 - Origines géographiques et familiales des nominés
 - Formation
 - Occupation à la nomination
