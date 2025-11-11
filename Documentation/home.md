@@ -11,7 +11,7 @@ Ce projet a pour objectif d'étudier l'évolution du profil des nominés pour la
 ### Création de la base de données
 
 * [Modèle conceptuel](modele_conceptuel)
-* [Commentaires du modèle conceptuel](modele_conceptuel_commentaire.md)
+* [Commentaires du modèle conceptuel](modele_conceptuel\modele_conceptuel_commentaire.md)
 
 ### Récupération et analyse de données existantes 
 
