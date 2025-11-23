@@ -2,6 +2,15 @@
 
 Ce document contient le commentaire, avec exemples si nécessaire, des éléments du modèle conceptuel.
 
+## Achievement 
+Un accomplissement fait référence à tout acte réalisé par une personne et ayant été mobilisé comme justification à une nomination pour le prix Nobel de la paix. 
+
+### Propriétés
+Pour tout accomplissement sont indiqués sa définition, permettant de l'expliciter et la date à laquelle il a été réalisé.
+
+### Relations
+Un accomplissement est immanquablement lié à la personne qui en est à l'origine ainsi qu'à la nomination pour laquelle il est mobilisé comme justificatif. 
+
 ## Field of activity
 Fait référence à un domaine d'activité de manière large dans lequel est active une personne ou une institution. 
 
@@ -74,6 +83,21 @@ Désigne l'appartenance d'une personne à une institution.
 Désigne le lien juridique liant une personne à un endroit géographique, généralement un État tel que définit par le droit international. 
 - cf. Geographical place
 
+## Nomination
+Fait référence à l'acte par lequel une personne nomine ou est nominée dans le cadre du prix Nobel de la paix. 
+
+### Propriétés
+Pour toute nomination sont renseignés:
+- sa définition, sous-entendu sa qualité de nomination individuelle ou collective, une nomination collective faisant référence à une nomination issue par plusieurs personnes. 
+- la date à laquelle elle a été émise, si disponible.
+- la motivation au nom de laquelle elle a été émise. (cf. accomplishment) 
+
+### Relations
+Une nomination est liée à l'accomplissement l'ayant motivée ainsi qu'à la personne l'ayant émise ou reçue grâce à une table "role":
+
+#### Nomination - person 
+Cette relation est exprimée par la table supplémentaire "role". Y sont spécifiés la date à laquelle la nomination a été émise et la définition du rôle: nominant ou nominé. 
+
 ## Occupation at nomination
 L'occupation à la nomination désigne l'activité professionnelle qu'exerçait la personne à la date de la nomination. 
 
@@ -96,9 +120,32 @@ Pour toute personne sont précisés:
 ### Relations
 En tant qu'élément central de cette analyse, une personne entretient des relations avec la majorité des autres classes de ce modèle. Par conséquent, elles ne seront pas récapitulées dans cette section, mais peuvent être trouvées dans les sections correspondantes. 
 
+## Political affiliation
+Désigne l'appartenance politique, si elle existe et est assumée et précisée, d'une personne. 
+
+Il peut s'agir d'une affiliation directe à un parti politique, une appartenance philosophique ou théorique à une mouvance politique. Ce travail s'intéressant à une période où les formes étatiques étaient variées, l'affiliation politique peut aussi faire référence à l'appartenance à un mouvement de pensée n'étant pas caractérisé comme un parti au sens actuel du terme. 
+
+### Propriétés
+Sont renseignés le nom officiel de l'affiliation politique ainsi que sa définition, dans laquelle sont précisés si nécessaire le pays auquel elle est rattachée et d'autres informations pertinentes.  
+
 ## Pursuit
 Fait référence à la relation liant une personne et un champ d'activité.
 - cf. Field of activity
+
+## Relationship 
+Une relation fait référence à tout lien pouvant lier deux personnes. Il peut s'agir d'un lien de sang, dans quel cas la personne 1 et la personne 2 entretiennent une relation notamment de filiation, mais également d'un lien marital, amical, ou autre. Pour ce modèle, chaque relation implique deux personnes, indiquées par les clefs étrangères fk_person_1 et fk_person_2.
+
+### Propriétés
+Pour chaque relation est indiquée sa définition si nécessaire. 
+
+### Relations
+Une relation implique un lien entre deux personnes, ainsi qu'un lien avec la table "relationship_type" venant en préciser les détails (cf. relationship type).
+
+## Relationship type
+Fait référence aux caractéristiques d'une relation donnée, notamment son nom - qui peut se rapprocher d'un type: familial, marital, professionnel, etc. - sa définition et ses dates de début et de fin si pertinent. 
+
+## Role
+cf. Nomination
 
 ## Training
 Fait référence à tout diplôme obtenu par une personne, tous niveaux d'études confondus. 
@@ -113,20 +160,6 @@ Une formation est liée à une institution et à une personne, partant du princi
 
 ---
 
-## Political affiliation
-Désigne l'appartenance politique, si elle existe et est assumée et précisée, d'une personne. 
 
-Il peut s'agir d'une affiliation directe à un parti politique, une appartenance philosophique ou théorique à une mouvance politique. Ce travail s'intéressant à une période où les formes étatiques étaient variées, l'affiliation politique peut aussi faire référence à l'appartenance à un mouvement de pensée n'étant pas caractérisé comme un parti au sens actuel du terme. 
-
-### Propriétés
-Sont renseignés le nom officiel de l'affiliation politique ainsi que sa définition, dans laquelle sont précisés si nécessaire le pays auquel elle est rattachée et d'autres informations pertinentes. 
-
-## Nomination
-Désigne l'acte par lequel une personne atteint le statut de nominé ou celui par lequel une personne atteint le statut de nominant. 
-
-### Propriétés
-Pour toute nomination sont renseignés:
-- sa définition, sous-entendu sa qualité de nomination individuelle ou collective, une nomination collective faisant référence à une nomination issue par plusieurs personnes. 
-- la date à laquelle elle a été émise, si disponible.
-- la motivation au nom de laquelle elle a été émise. 
-
+A FINIR
+Political affiliation
