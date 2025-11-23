@@ -74,9 +74,17 @@ Désigne l'appartenance d'une personne à une institution.
 Désigne le lien juridique liant une personne à un endroit géographique, généralement un État tel que définit par le droit international. 
 - cf. Geographical place
 
+## Occupation at nomination
+L'occupation à la nomination désigne l'activité professionnelle qu'exerçait la personne à la date de la nomination. 
+
+### Propriétés
+Pour toute occupation est indiqué l'intitulé du poste occupé par la personne et la date depuis laquelle elle occupe ledit poste.
+
+### Relations
+L'occupation est irrémédiablement liée à la personne à laquelle elle se réfère ainsi qu'à l'institution au sein de laquelle elle est exercée. 
+
 ## Person
 Fait référence à tout être humain ayant été nominé ou ayant nominé dans le cadre du prix Nobel de la paix, depuis 1901. 
-
 
 ### Propriétés
 Pour toute personne sont précisés:
@@ -122,8 +130,3 @@ Pour toute nomination sont renseignés:
 - la date à laquelle elle a été émise, si disponible.
 - la motivation au nom de laquelle elle a été émise. 
 
-## Occupation à la nomination
-L'occupation à la nomination désigne l'activité professionnelle qu'exerçait la personne à la date de la nomination. 
-
-### Propriétés
-Pour toute occupation est indiqué l'intitulé du poste occupé par la personne et la date depuis laquelle elle occupe ledit poste.
