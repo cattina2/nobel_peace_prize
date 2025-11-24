@@ -1,4 +1,5 @@
 # Objets (avec leurs propriétés)
+Cette page regroupe une première étape préparatoire de mon travail, au cours de laquelle il avait été question de réfléchir aux objets - et à leurs propriétés - pouvant se montrer utiles pour répondre à la problématique et aux questions de recherche. 
 
 ## Personne
 - Nom

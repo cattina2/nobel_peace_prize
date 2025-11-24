@@ -4,7 +4,7 @@ A sa mort en 1896, Alfred Nobel laisse derrière lui un testament aux directives
 
 Ainsi naît le fameux prix Nobel de la paix, dont les premiers récipiendaires - en 1901 - n’ont été autres qu’Henry Dunant et Frédéric Passy dont les accomplissements ne sont plus à répéter. Depuis son établissement, 105 prix ont été attribués à 142 lauréats, qu’il s’agisse de personnes physiques ou morales. 
 
-Ce travail s'intéresse de ce fait autant aux récipiendaires qu'aux nominés pour le prix Nobel de la paix. Cependant, la liste des nominés pour une année précise ne sont disponibles que 50 ans après la remise du prix, selon l'article 10 des statuts de la Fondantion Nobel. Ainsi, tenant compte de cette contrainte, ce travail s'intéresse aux nominés connus de l'année 1901 - première année à connaître des nominations - à l'année 1962, choisie car se situant avant la dernière année pour laquelle les listes de nominés sont accessibles (1975) et ayant connu l'une des pires crises de la guerre froide: la crise des missiles de Cuba.
+Ce travail s'intéresse de ce fait autant aux récipiendaires qu'aux nominés pour le prix Nobel de la paix. Cependant, la liste des nominés pour une année précise n'est disponible que 50 ans après la remise du prix, selon l'article 10 des statuts de la Fondantion Nobel. Ainsi, tenant compte de cette contrainte, ce travail s'intéresse aux nominés connus de l'année 1901 - première année à connaître des nominations - à l'année 1962, choisie car se situant avant la dernière année pour laquelle les listes de nominés sont accessibles (1975) et ayant connu l'une des pires crises de la guerre froide: la crise des missiles de Cuba.
 
 Grâce à une démarche propsopographique, il sera question de tenter de décrire les profils-types des nominés et récipiendaires pour cette période et éventuellement de souligner les parcours ou profils atypiques. Pour ce faire, nous utiliserons une approche s'inspirant des théories bourdieusiennes (cf. notions de champ et d'habitus) afin de proposer une modélisation simplifiée de cette catégorie d'individus. Seront ainsi soulignées les caractéristiques socio-démographiques de ces personnes, ainsi que leur appartenance à une organisation ou encore le domaine d'activité leur ayant valu nomination. 
 
@@ -12,10 +12,8 @@ Grâce à une démarche propsopographique, il sera question de tenter de décrir
 # Questions de recherche
 
 Cette démarche vise à répondre à plusieurs interrogations s'articulant autour de l'évolution des caractéristiques des nominés pour le prix Nobel de la paix. Ces interrogations sont donc les suivantes:
-
-Y-a-t-il des éléments systématiques qui permettent de caractériser les récipiendaires par rapport aux nominés?
-
-Quelles évolutions peut-on remarquer concernant les causes ou domaines d'activités représentés par les nominés et récipiendaires au fil du temps?
+- Quels sont les éléments systématiques pouvant caractériser les récipiendaires d'un prix Nobel de la paix par rapport aux nominés non-récipiendaires?
+- Quelles évolutions peut-on remarquer concernant les causes ou domaines d'activités représentés par les nominés et récipiendaires au fil du temps?
 
 
 # Informations à collecter
