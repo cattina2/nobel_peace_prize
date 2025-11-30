@@ -17,8 +17,12 @@ Cette démarche vise à répondre à plusieurs interrogations s'articulant autou
 
 
 # Informations à collecter
-- Origines géographiques et familiales des nominés
-- Formation
-- Occupation à la nomination
-- Appartenance à des institutions (ONGs, gouvernements, OI, etc.)
-- Domaines d'activités
+Pour répondre à ces questions de recherche, et à la première particulièrement, je pense que les informations pertinentes à récolter sur les individus nominés au prix Nobel de la paix sont les suivantes:
+* Dates de naissance et de décès 
+* Nationalité
+* Formation
+* Occupation professionnelle à la nomination
+* Occupation politique 
+* Appartenance à des institutions 
+* Relations avec d'autres personnes
+* Liens avec un certain endroit géographique 
