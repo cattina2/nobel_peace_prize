@@ -12,7 +12,10 @@ Ce projet a pour objectif d'étudier l'évolution du profil des nominés pour la
 
 * [Modèle conceptuel](modele_conceptuel)
 * [Commentaires du modèle conceptuel](modele_conceptuel/modele_conceptuel_commentaire.md)
+*[Modèle logique ou relationel](modele_logique_relationel.md)
 
 ### Récupération et analyse de données existantes 
 
-### Système d'information
+* [Explorer DBpedia](explorer_dbpedia.md)
+* [Importer des données  de DBpedia](importer_données_dbpedia.md)
+* [Visualiser les données de DBpedia](visualiser_donnees_dbpedia.md)
