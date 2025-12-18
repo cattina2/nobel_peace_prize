@@ -128,6 +128,9 @@ Il peut s'agir d'une affiliation directe à un parti politique, une appartenance
 ### Propriétés
 Sont renseignés le nom officiel de l'affiliation politique ainsi que sa définition, dans laquelle sont précisés si nécessaire le pays auquel elle est rattachée et d'autres informations pertinentes.  
 
+### Relation
+L'affiliation politique est reliée si nécessaire au parti politique, pour lequel sont précisés son nom officiel et son orientation politique (gauche-droite).
+
 ## Pursuit
 Fait référence à la relation liant une personne et un champ d'activité.
 - cf. Field of activity
