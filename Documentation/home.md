@@ -12,7 +12,7 @@ Ce projet a pour objectif d'étudier l'évolution du profil des nominés pour la
 
 * [Modèle conceptuel](modele_conceptuel)
 * [Commentaires du modèle conceptuel](modele_conceptuel/modele_conceptuel_commentaire.md)
-*[Modèle logique ou relationel](modele_logique_relationel.md)
+* [Modèle logique ou relationel](modele_logique_relationel.md)
 
 ### Récupération et analyse de données existantes 
 
