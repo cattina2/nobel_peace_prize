@@ -113,8 +113,8 @@ Fait référence à tout être humain ayant été nominé ou ayant nominé dans 
 ### Propriétés
 Pour toute personne sont précisés:
 - Son nom, indiqué sous le format "nom de famille, prénoms" et désignant le nom par lequel il est communément désigné. Ainsi, Henry Dunant est désigné comme tel: "Dunant, Henry" et non par son nom de naissance. 
-- Son statut: nominé ou lauréat, en fonction de si la nomination a abouti de manière positive ou non. 
-- Son âge à la première nomination, dans le cas où un individu a été nominé plusieurs années, ce qui est parfois le cas.
+- Son statut: nominateur, nominé ou lauréat, en fonction de si la nomination a abouti de manière positive ou non. 
+- Son âge à la première nomination, dans le cas où un individu a été nominé plusieurs années, ce qui est parfois le cas. Sinon, l'âge à la nomination ayant débouché sur un prix Nobel est indiqué. Dans le cas du nominateur, l'âge à la nomination n'a pas été retenu comme donnée importante dans le cadre de cette analyse.
 - Ses dates de naissance et de décès. 
 
 ### Relations
