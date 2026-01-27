@@ -16,7 +16,6 @@ Ce projet a pour objectif d'étudier l'évolution du profil des nominés pour la
 * [Modèle conceptuel .drawio](modele_conceptuel/MCD_to_database_nobel_prize.drawio)
 * [Modèle conceptuel export .png](modele_conceptuel/MCD_to_database_nobel_prize.png)
 * [Commentaires du modèle conceptuel](modele_conceptuel/modele_conceptuel_commentaire.md)
-* [Modèle logique ou relationel](modele_logique_relationel.md)
 
 ### Récupération et analyse de données existantes 
 
