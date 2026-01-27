@@ -1,4 +1,4 @@
-# Cours du 15 février 2025
+# Cours du 15 décembre 2025
 
 Cours sur l'utilisation d'Allegrograph, selon la recette donnée par le professeur. Voici les requêtes que nous avons utilisées dans le cadre de ce cours. 
 Ceci concerne l'importation d'ouvrages au sujet/écrits par les personnes de ma liste, à savoir les nominés au prix Nobel de la Paix. 
@@ -70,7 +70,29 @@ SERVICE <https://dbpedia.org/sparql> {
     }    
 }
 
+Résultat obtenu = True.
+
+## Compter les triplets importés 
+
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+
+SELECT (COUNT(*) as ?number)
+WHERE {?s a dbo:Person}
+
+Résultat obtenu = 740.
+
 ## Inspecter les triplets
+
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+SELECT ?s ?p ?o
+WHERE {?s a dbo:Person;
+        ?p ?o.
+FILTER (?o != dbo:Person)
+    }
+ORDER BY ?s ?p
+LIMIT 100
+
+## Inspecter les triplets à importer de Wikidata
 
 PREFIX dbr: <http://dbpedia.org/resource/>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
@@ -88,7 +110,7 @@ SELECT ?person  ?wikidataUri
         }
 }
 
-## Insérer les triplets
+## Insérer les triplets d'alignement DBPedia/Wikidata
 
 PREFIX dbr: <http://dbpedia.org/resource/>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
@@ -106,6 +128,174 @@ INSERT {?person owl:sameAs ?wikidataUri.}
             FILTER (CONTAINS(STR(?wikidataUri), 'wikidata'))
         }
 }
+
+Résultat obtenu = True.
+
+## Compter les relations owl:sameAs
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+
+SELECT (COUNT(*) AS ?number)
+WHERE {?s a dbo:Person;
+          owl:sameAs ?o.
+       }
+Résultat obtenu = 8082.
+
+## Inspecter les données importées 
+
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+
+SELECT ?s ?p ?o
+WHERE {?s a dbo:Person;
+        ?p ?o.
+FILTER (?o != dbo:Person)
+    }
+ORDER BY ?s ?p
+
+
+Chercher les URI dans Wikidata
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+
+SELECT *
+WHERE {
+  ?s owl:sameAs ?wdPerson;
+          a dbo:Person.
+  FILTER (CONTAINS(STR(?wdPerson), 'wikidata'))        
+  SERVICE <https://query.wikidata.org/sparql> {
+            ?wdPerson wdt:P269 ?idRef.
+            BIND(URI(CONCAT('http://www.idref.fr/', ?idRef, '/id')) as ?uriIdRef)
+      }     
+}
+LIMIT 10
+
+## Tester les URI
+
+select *
+where {
+    SERVICE <https://data.idref.fr/sparql> {
+            <http://www.idref.fr/032799128/id> ?p ?o.
+      }     
+      }
+
+## Insérer les triplets d'alignement <DBPedia>
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+# CONSTRUCT {?person owl:sameAs ?uriIdRef.}
+INSERT {?person owl:sameAs ?uriIdRef.}
+    WHERE {
+
+      ?person owl:sameAs ?wdPerson;
+            a dbo:Person.
+    FILTER (CONTAINS(STR(?wdPerson), 'wikidata'))        
+    SERVICE <https://query.wikidata.org/sparql> {
+              ?wdPerson wdt:P269 ?idRef.
+              BIND(URI(CONCAT('http://www.idref.fr/', ?idRef, '/id')) as ?uriIdRef)
+        }  
+  }
+
+Résultat obtenu = True. 
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+
+SELECT ?person ?idrefPerson ?p ?o
+WHERE {
+        ?person owl:sameAs ?idrefPerson;
+            a dbo:Person.
+    FILTER (CONTAINS(STR(?idrefPerson), 'idref'))  
+     
+  SERVICE <https://data.idref.fr/sparql> {
+            ?idrefPerson ?p ?o.
+      }     
+  }
+ORDER BY ?person
+LIMIT 100
+
+## Les compter 
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+
+SELECT ?p (count(*) as ?number)
+WHERE {
+        ?person owl:sameAs ?idrefPerson;
+            a dbo:Person.
+    FILTER (CONTAINS(STR(?idrefPerson), 'idref'))  
+     
+  SERVICE <https://data.idref.fr/sparql> {
+            ?idrefPerson ?p ?o.
+      }     
+  }
+GROUP BY ?p
+ORDER BY DESC(?number)
+
+## Propriétés entrantes
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+
+SELECT ?p (count(*) as ?number)
+WHERE {
+        ?person owl:sameAs ?idrefPerson;
+            a dbo:Person.
+    FILTER (CONTAINS(STR(?idrefPerson), 'idref'))  
+     
+  SERVICE <https://data.idref.fr/sparql> {
+            ?s ?p ?idrefPerson.
+      }     
+  }
+GROUP BY ?p
+ORDER BY DESC(?number)
+
+# Identifier les ressources bibliographiques
+
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+
+SELECT ?p (count(*) as ?number)
+WHERE {
+        ?person owl:sameAs ?idrefPerson;
+            a dbo:Person.
+    FILTER (CONTAINS(STR(?idrefPerson), 'idref'))  
+     
+  SERVICE <https://data.idref.fr/sparql> {
+            ?s <http://id.loc.gov/vocabulary/relators/aut> ?idrefPerson;
+                     ?p ?o      
+      }     
+  }
+GROUP BY ?p
+ORDER BY DESC(?number)
+
+
+
 
 ## Inspecter les données importées
 
