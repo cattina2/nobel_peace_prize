@@ -45,6 +45,8 @@ For Nobel Peace Prize nominees, the following properties appear to be an effecti
 * [nominated for](https://m.wikidata.org/wiki/Property:P1411)
 * [award received](https://m.wikidata.org/wiki/Property:P166)
 
+Pour trouver une entité sur le Wikidara Query Service, presser la combinaison ctrl + espace derrière le wd. ou wdt.
+
 ### Number of persons with 'nominated for' and/or 'award received' as Nobel Peace Prize
 
 Figures as of February 28, 2026
@@ -82,6 +84,208 @@ WHERE {
     {?item wdt:P166 wd:Q35637}    
 }  
 ```
+
+#### Awarded the Nobel Peace Prize
+
+112 as of February 28, 2026.
+
+?item représente une variable. Il s'agit du sujet, dans la forme sujet-prédicat-objet. 
+
+```
+SELECT (COUNT(*) as ?eff)
+WHERE {
+    ?item wdt:P31 wd:Q5.
+    {?item wdt:P166 wd:Q35637}
+    UNION
+    {?item wdt:P1511 wd:Q35637}    
+}
+```
+
+#### Both sub-populations
+
+555 as of February 28, 2026.
+
+But it is the sum of the two, so a perosn could appear more then once - and do appear more then once, as the people awarded the Nobel Prize were nominated for it.
+
+```
+SELECT (COUNT(*) as ?eff)
+WHERE {
+    ?item wdt:P31 wd:Q5.
+    {?item wdt:P1411 wd:Q35637}
+    UNION
+    {?item wdt:P166 wd:Q35637}    
+}  
+```
+
+## Actual number of people
+
+504 as of March 02, 2026. 
+
+
+```
+SELECT (COUNT(*) as ?eff)
+WHERE {
+    ### subquery adding the distinct clause
+    {
+        SELECT DISTINCT ?item
+        WHERE {
+        ?item wdt:P31 wd:Q5;  # Any instance of a human.
+        {?item wdt:P1411 wd:Q35637}
+        UNION
+        {?item wdt:P166 wd:Q35637}  
+        }
+    }
+}
+```
+
+## Add a filter on the birth year
+
+500 on March 2nd
+
+```
+SELECT (COUNT(*) as ?eff)
+WHERE
+    {
+    ### subquery adding the distinct clause
+        {
+        SELECT DISTINCT ?item
+        WHERE {
+        ?item wdt:P31 wd:Q5; 
+              wdt:P569 ?birthDate.
+        BIND(REPLACE(str(?birthDate), "(.*)([0-9]{4})(.*)", "$2") AS ?year)
+        FILTER(xsd:integer(?year) > 1780 && xsd:integer(?year) < 1990)# Any instance of a human.
+           {?item wdt:P1411 wd:Q35637}
+            UNION
+            {?item wdt:P166 wd:Q35637}
+            }
+        }  
+    }
+```
+
+## Inspect individuals
+
+```
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?item ?itemLabel ?year
+WHERE {
+    {
+  
+          {?item wdt:P1411 wd:Q35637}
+          UNION
+          {?item wdt:P166 wd:Q35637}  
+    }  
+    ?item wdt:P31 wd:Q5;  # Any instance of a human.
+            wdt:P569 ?birthDate.
+  BIND(REPLACE(str(?birthDate), "(.*)([0-9]{4})(.*)", "$2") AS ?year)
+        FILTER(xsd:integer(?year) > 1780 && xsd:integer(?year) < 1981)
+  
+    ### Two ways of getting labels
+    # SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+
+    ## This is useful for query from external tool
+    ?item rdfs:label ?itemLabel.
+    FILTER(LANG(?itemLabel) = 'en')
+    }  
+LIMIT 100
+```
+
+## Count population with English labels
+
+498 as of March 2nd 2026.
+
+```
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT (COUNT(*) as ?eff)
+WHERE
+    {
+    ### subquery adding the distinct clause
+        {
+        SELECT DISTINCT ?item ?itemLabel ?year
+        WHERE {
+        ?item wdt:P31 wd:Q5; 
+              wdt:P569 ?birthDate.
+        BIND(REPLACE(str(?birthDate), "(.*)([0-9]{4})(.*)", "$2") AS ?year)
+        FILTER(xsd:integer(?year) > 1780 && xsd:integer(?year) < 1981)# Any instance of a human.
+           {?item wdt:P1411 wd:Q35637}
+          UNION
+          {?item wdt:P166 wd:Q35637}  
+        ?item rdfs:label ?itemLabel.
+        FILTER(LANG(?itemLabel) = 'en')
+            }
+        }  
+    } 
+```
+
+## Number of individuals without English label
+
+3 as of March 2nd 2026.
+
+```
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT (COUNT(*) as ?eff)
+WHERE
+    {
+    ### sous requête qui ajoute la clause distinct
+        {
+        SELECT DISTINCT ?item ?itemLabel ?year
+        WHERE {
+        ?item wdt:P31 wd:Q5; 
+              wdt:P569 ?birthDate.
+        BIND(REPLACE(str(?birthDate), "(.*)([0-9]{4})(.*)", "$2") AS ?year)
+        FILTER(xsd:integer(?year) > 1780 && xsd:integer(?year) < 1981)# Any instance of a human.
+            {?item wdt:P1411 wd:Q35637}
+            UNION
+            {?item wdt:P166 wd:Q35637}  
+        MINUS {?item rdfs:label ?itemLabel.
+            FILTER(LANG(?itemLabel) = 'en')
+            }
+            }
+        }  
+    }
+
+```
+### Inspecter ces personnes
+
+```
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+SELECT ?item ?year (group_concat(?iso_lang ; separator = ',') as ?langs) (max(?itemLabel) as ?maxLabel)
+WHERE
+    { 
+       { SELECT DISTINCT ?item ?year
+        WHERE {
+        ?item wdt:P31 wd:Q5; 
+              wdt:P569 ?birthDate.
+        BIND(REPLACE(str(?birthDate), "(.*)([0-9]{4})(.*)", "$2") AS ?year)
+        FILTER(xsd:integer(?year) > 1780 && xsd:integer(?year) < 1990)# Any instance of a human.
+             {?item wdt:P1411 wd:Q35637}
+            UNION
+            {?item wdt:P166 wd:Q35637}  
+        MINUS {?item rdfs:label ?itemLabel.
+            FILTER(LANG(?itemLabel) = 'en')
+            }
+            }
+        }  
+  
+        ?item rdfs:label ?itemLabel. 
+		BIND(LANG(?itemLabel) as ?iso_lang)
+  
+       }
+	   GROUP BY ?item ?year
+	   ORDER BY ?item
+	   LIMIT 100
+```
+
+## List of the available properties and their numbers
+
+### Outgoing
+Ce sont les plus intéressantes dans notre cas. 
+
+
+Exécuter les requêtes plus volumineuses dans QLever!
 
 
 
