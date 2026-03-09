@@ -19,6 +19,6 @@ Ce projet a pour objectif d'étudier l'évolution du profil des nominés pour la
 
 ### Récupération et analyse de données existantes 
 
-* [Explorer DBpedia](explorer_dbpedia.md)
+* [Explorer DBpedia en classe](explorer_dbpedia.md)
 * [Importer des données  de DBpedia](importer_données_dbpedia.md)
 * [Visualiser les données de DBpedia](visualiser_donnees_dbpedia.md)
