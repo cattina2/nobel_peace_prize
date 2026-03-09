@@ -284,8 +284,78 @@ WHERE
 ### Outgoing
 Ce sont les plus intéressantes dans notre cas. 
 
-
 Exécuter les requêtes plus volumineuses dans QLever!
 
+Se référer à [cette page](proprietes_population.md) pour la liste de propriétés résultant de cette requête.
+
+```
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+SELECT ?p ?propLabel ?eff ('' as ?notes)
+WHERE {
+{
+    SELECT DISTINCT  ?p  (count(*) as ?eff)
+    WHERE {
+        ?item wdt:P31 wd:Q5; 
+             wdt:P569 ?birthDate.
+        BIND(REPLACE(str(?birthDate), "(.*)([0-9]{4})(.*)", "$2") AS ?year)
+        FILTER(xsd:integer(?year) > 1780 && xsd:integer(?year) < 1981)# Any instance of a human.
+            {?item wdt:P1411 wd:Q35637}
+            UNION
+            {?item wdt:P166 wd:Q35637}.
+			?item ?p ?o.
+        }
+		GROUP BY ?p
+    }
+
+    ## we need this construct to get the label of the property
+    ## properties are also entities in Wikidata,
+    ## but only in the entities' namespace
+
+    ?prop wikibase:directClaim ?p .
+    ?prop rdfs:label ?propLabel.
+    FILTER(LANG(?propLabel) = 'en')
+    }  
+ORDER BY DESC(?eff) 
+```
+
+### Incoming 
+
+The relevant incoming properties can be found [here](proprietes_entrantes_population.md)
+
+```
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+SELECT ?p ?propLabel ?eff  ('' as ?notes)
+WHERE {
+{
+    SELECT DISTINCT  ?p  (count(*) as ?eff)
+    WHERE {
+        ?item wdt:P31 wd:Q5; 
+             wdt:P569 ?birthDate.
+        BIND(REPLACE(str(?birthDate), "(.*)([0-9]{4})(.*)", "$2") AS ?year)
+        FILTER(xsd:integer(?year) > 1780 && xsd:integer(?year) < 1981)# Any instance of a human.
+            {?item wdt:P1411 wd:Q35637}
+            UNION
+            {?item wdt:P166 wd:Q35637}.
+
+            ## inversed triple
+			?s ?p ?item.
+        }
+		GROUP BY ?p
+    }
+    ?prop wikibase:directClaim ?p .
+
+    ?prop rdfs:label ?propLabel.
+        FILTER(LANG(?propLabel) = 'en')
+    }  
+ORDER BY DESC(?eff) 
+```
 
 
